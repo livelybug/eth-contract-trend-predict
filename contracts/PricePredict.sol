@@ -2,73 +2,96 @@ pragma solidity ^0.4.2;
 
 contract PricePredict {
 
-    struct BetStruct{
-        mapping(address => uint) betMapping;
-        address[] bettors;
-        uint range;
-        uint betpool;
-    }
-
     address public manager;
-    BetStruct[] public betStructs;
     uint public minBet;
     uint public rangeMax;
     uint public poolSum;
+    address[] public storeAdds; 
     
     constructor(uint range, uint minimunt) public {
+        require(range > 0);
+        require(minimunt > 0);
+        
         manager = msg.sender;
         minBet = minimunt;
         rangeMax = range;
-        
+
         for(uint i = 0; i <= rangeMax; i++) {
-            BetStruct memory betStruct = BetStruct({
-                bettors: new address[](0),
-                range: i,
-                betpool: 0
-            });
-            betStructs.push(betStruct);
-            betStructs[i].range = i;
+            address betStorageAdd = new BetStorage(i);
+            storeAdds.push(betStorageAdd);
         }        
-        
     }
 
     function bet(uint predict) public payable{
         require(msg.value > minBet);
         require(predict <= rangeMax);
 
-        if(betStructs[predict].betMapping[msg.sender] == 0) {
-            betStructs[predict].bettors.push(msg.sender);
+        address storeAdd1 = storeAdds[predict];
+        BetStorage betStorage1 = BetStorage(storeAdd1);
+        if(betStorage1.betMapping(msg.sender) == 0) {
+           betStorage1.addBettor(msg.sender); 
         }
-        betStructs[predict].betMapping[msg.sender] += msg.value;
-        betStructs[predict].betpool += msg.value;
+        betStorage1.addBetMapping(msg.sender, msg.value);
+        betStorage1.addBetPool(msg.value);
+        
         poolSum += msg.value;
     }
 
     function resolve(uint predict) public payable {
         require(msg.sender == manager);
         require(predict <= rangeMax);
-        require(betStructs[predict].betpool > 0);
 
-        // loop the correct bettors
-        for(uint i = 0; i < betStructs[predict].bettors.length; i++) {
-            BetStruct storage betStruct = betStructs[predict];
-            uint refund = betStruct.betMapping[betStruct.bettors[i]] / betStructs[predict].betpool * poolSum;
-            betStruct.bettors[i].transfer(refund);
-        }        
+        address storeAdd2 = storeAdds[predict];
+        BetStorage betStorage2 = BetStorage(storeAdd2);
+        require(betStorage2.betPool() > 0);        
 
+        // loop the bettors of winning group
+        uint bettorsLen = betStorage2.getBettorsLen();
+        for(uint i = 0; i < bettorsLen; i++ ) {
+            address aWinner = betStorage2.bettors(i);
+            uint refund = betStorage2.betMapping(aWinner) / uint128(betStorage2.betPool()) * poolSum;
+            aWinner.transfer(refund);
+        }
+        
+        // reset
+        storeAdds = new address[](0);
         for(i = 0; i <= rangeMax; i++) {
-            address[] storage _betters = betStructs[i].bettors; 
-            if(_betters.length > 0) delete betStructs[i].betMapping[_betters[0]];
-            betStructs[i].bettors = new address[](0);
-            betStructs[i].range = i;
-            betStructs[i].betpool = 0;
+            address betStorageAdd = new BetStorage(i);
+            storeAdds.push(betStorageAdd);
         }
         
         poolSum = 0;
     }
 
-    function getBettors(uint predict) public view returns(address[]) {
-        return betStructs[predict].bettors;
+}
+
+
+contract BetStorage {
+    
+    mapping(address => uint) public betMapping;
+    address[] public bettors;
+    uint public range;
+    uint public betPool;
+
+    constructor(uint i) public {
+        bettors = new address[](0);
+        range = i;
+        betPool = 0;
     }
 
+    function getBettorsLen() public view returns(uint) {
+        return bettors.length;
+    }
+    
+    function addBettor(address bettor) public {
+        bettors.push(bettor);
+    }
+    
+    function addBetMapping(address bettor, uint wager) public {
+        betMapping[bettor] += wager;
+    }
+    
+    function addBetPool(uint wager) public {
+        betPool += wager;
+    }
 }
