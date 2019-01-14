@@ -17,6 +17,12 @@ const deploy = async () => {
         .send({from: accounts[0]});
 
     console.log('Deployed to address: ', result.options.address);
+
+    fs.writeFile('predictContractAddress.txt', result.options.address, function(err, _){
+        if (err) console.log(err);
+        console.log("Successfully write contract address to File.");
+    });
+
 };
 
 deploy();

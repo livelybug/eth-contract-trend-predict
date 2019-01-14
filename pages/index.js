@@ -2,78 +2,61 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Link from 'next/link';
+import {withStyles} from '@material-ui/core/styles';
+import predict from '../eth/predict';
+import Layout from '../components/Layout';
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import PredictInit from '../components/PredictInit';
 
 const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
+    root: {
+        flexGrow: 1
+    }
 });
 
 class Index extends React.Component {
-  state = {
-    open: false,
-  };
+    state = {
+        open: false,
+        manager: '',
+        minBet: 0,
+        rangeMax: 0,
+        poolSum: 0,
+        storeAdds: []
+    };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
+    async componentDidMount() {
+        const manager = await predict.methods.manager().call();
+        const minBet = await predict.methods.minBet().call();
+        const rangeMax = await predict.methods.rangeMax().call();
 
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
+        this.setState({manager, minBet, rangeMax});
+    }
 
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
 
-    return (
-      <div className={classes.root}>
-        <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={this.handleClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          example project
-        </Typography>
-        <Typography gutterBottom>
-          <Link href="/about">
-            <a>Go to the about page</a>
-          </Link>
-        </Typography>
-        <Button variant="contained" color="secondary" onClick={this.handleClick}>
-          Super Secret Password
-        </Button>
-      </div>
-    );
-  }
+    render() {
+        const {classes} = this.props;
+
+        return (
+            <div className={classes.root}>
+                <Layout>
+                    <h3>ETH Price Prdiction</h3>
+                    <Grid container spacing={24}>
+                        <Grid item xs={9} sm={5}>
+                            <PredictInit initState={this.state}/>
+                        </Grid>
+                        <Grid item xs={12} sm={7}>
+                            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+                        </Grid>
+                    </Grid>
+                </Layout>
+            </div>
+        );
+    }
 }
 
 Index.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Index);
