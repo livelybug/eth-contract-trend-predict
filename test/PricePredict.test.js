@@ -1,12 +1,12 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require('web3');
-const blockGasLimit = 900000000;
-const options = { gasLimit: blockGasLimit };
-const web3 = new Web3(ganache.provider(options));
-
 const compiledBetStorage = require('../eth/build/:BetStorage.json');
 const compiledPricePredict = require('../eth/build/:PricePredict.json');
+
+const web3 = new Web3(ganache.provider(options));
+const blockGasLimit = 900000000;
+const options = { gasLimit: blockGasLimit };
 
 let accounts = undefined;
 let predict = undefined;

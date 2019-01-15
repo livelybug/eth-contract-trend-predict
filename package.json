@@ -12,18 +12,27 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/styles": "^3.0.0-alpha.7",
+    "@zeit/next-css": "^1.0.1",
+    "formik": "^1.4.2",
     "fs-extra": "^7.0.1",
     "ganache-cli": "^6.2.5",
-    "mocha": "^5.2.0",
-    "solc": "^0.4.25",
-    "truffle-hdwallet-provider": "^1.0.1",
-    "web3": "^1.0.0-beta.35",
-    "@material-ui/core": "latest",
     "jss": "latest",
+    "mocha": "^5.2.0",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
+    "react-circular-progressbar": "^1.0.0",
     "react-dom": "latest",
-    "react-jss": "^8.1.0"
+    "react-jss": "^8.1.0",
+    "react-scripts-ts": "^3.1.0",
+    "solc": "^0.4.25",
+    "truffle-hdwallet-provider": "^1.0.1",
+    "web3": "^1.0.0-beta.35",
+    "yup": "^0.26.7"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
   }
 }

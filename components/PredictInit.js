@@ -9,6 +9,7 @@ import web3 from '../eth/web3';
 const styles = {
     card: {
         minWidth: 275,
+        margin: '1rem'
     },
     title: {
         fontSize: 14,
