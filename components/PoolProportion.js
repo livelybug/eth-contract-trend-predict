@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import web3 from '../eth/web3';
 import {precise} from '../src/utils/utils';
+import CircularProgressbar from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const styles = theme => ({
     button: {
         margin: theme.spacing.unit * 2
+    },
+    progressBar: {
+        width: '100px'
     }
 });
 
@@ -18,15 +22,12 @@ class CircularStatic extends React.Component {
         super(props);
     }
 
-    state = {
-        completed: 0,
-    };
-
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <CircularProgress size={60} variant="static" value={this.props.percent} />
+                <CircularProgressbar percentage={precise(this.props.percent)}
+                                     text={`${precise(this.props.percent)}%`} className={classes.progressBar}/>
 
                 <Button className={classes.button} variant="text" color="primary">
                     {precise(this.props.percent)}% / {web3.utils.fromWei(this.props.betPool)} ETH
@@ -35,7 +36,6 @@ class CircularStatic extends React.Component {
                 <Button className={classes.button}  variant="text" color="primary">
                     {this.props.bettorsLen} bettor(s)
                 </Button>
-
             </div>
         );
     }

@@ -33,16 +33,16 @@ const SubmitBet = (_props) => (
                         value: web3.utils.toWei(values.wager.toString(), "ether"),
                         gas: blockGasLimit
                     });
+                    setSubmitting(false);
 
                     if(globalConfig.debug)
                         setTimeout(() => {
                             alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
                         }, 500);
                 }}
+
                 validationSchema={Yup.object().shape({
                     wager: Yup.number()
-                        .required()
                         .positive(),
                 })}
             >
@@ -51,12 +51,12 @@ const SubmitBet = (_props) => (
                         values,
                         touched,
                         errors,
-                        dirty,
+                        // dirty,
                         isSubmitting,
                         handleChange,
                         handleBlur,
-                        handleSubmit,
-                        handleReset
+                        handleSubmit
+                        // handleReset
                     } = props;
 
                     const predict = values._props.predict;
@@ -67,7 +67,7 @@ const SubmitBet = (_props) => (
                                 {predict.predict}
                             </label>
 
-                            <PoolProportion percent={predict.betPool / predict.poolSum * 100}
+                            <PoolProportion percent={predict.poolSum ? predict.betPool / predict.poolSum * 100 : 0 }
                                             betPool={predict.betPool}
                                             bettorsLen={predict.bettorsLen}
                             />
