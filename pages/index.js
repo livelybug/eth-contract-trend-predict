@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid";
+import ReactLoading from 'react-loading';
 
 import predict from '../eth/predict';
 import betStorege from '../eth/betStorage';
@@ -14,7 +15,13 @@ import SubmitBet from '../components/SubmitBet';
 const styles = () => ({
     root: {
         flexGrow: 1
+    },
+    center: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "50%"
     }
+
 });
 
 const trendsMap = {
@@ -31,7 +38,8 @@ class Index extends React.Component {
         rangeMax: 0,
         poolSum: 0,
         storeAdds: [],
-        submitBets: []
+        submitBets: [],
+        isLoading: true
     };
 
     async componentDidMount() {
@@ -41,13 +49,14 @@ class Index extends React.Component {
         const poolSum = await predict.methods.poolSum().call();
 
         this.setState({manager, minBet, rangeMax, poolSum});
-        this.getSubmitBets();
+        await this.getSubmitBets();
+        setTimeout(() => this.setState({isLoading: false}), 300);
     }
 
     async getSubmitBets() {
         let submitBets = [];
 
-        for(let range = 0; range <= this.state.rangeMax; range++) {
+        for (let range = 0; range <= this.state.rangeMax; range++) {
             const betStorage = await betStorege(range);
             const betPool = await betStorage.methods.betPool().call();
             const bettorsLen = await betStorage.methods.getBettorsLen().call();
@@ -62,7 +71,14 @@ class Index extends React.Component {
     }
 
     render() {
+        const {isLoading} = this.state;
         const {classes} = this.props;
+
+        if (isLoading)
+            return (
+                <ReactLoading className={classes.center} type="spinningBubbles" color="#cbcbcd" height={'30%'}
+                              width={'30%'}/>
+            );
 
         return (
             <div className={classes.root}>
