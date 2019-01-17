@@ -23,7 +23,6 @@ func main() {
 	for true {
 		timer1 := time.NewTimer(timeOut * time.Second)
 		<-timer1.C
-		log.Println("Timer 1 expired")
 		resvbt.ResolveBet()
 	}
 }

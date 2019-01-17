@@ -50,6 +50,15 @@ func ResolveBet() {
 
 	// Finish verifying the deployed contract
 
+	poolSum, err := predictInstance.PoolSum(nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if poolSum.Uint64() == 0 {
+		log.Println("No bet yet!")
+		return
+	}
+
 	privateKey, err := crypto.HexToECDSA(rinkebyPK)
 	if err != nil {
 		log.Fatal(err)
