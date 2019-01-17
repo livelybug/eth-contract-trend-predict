@@ -3,14 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+
 import predict from '../eth/predict';
 import betStorege from '../eth/betStorage';
 import Layout from '../components/Layout';
-import Grid from "@material-ui/core/Grid";
 import PredictInit from '../components/PredictInit';
 import SubmitBet from '../components/SubmitBet';
 
-const styles = theme => ({
+const styles = () => ({
     root: {
         flexGrow: 1
     }
