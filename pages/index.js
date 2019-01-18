@@ -83,7 +83,9 @@ class Index extends React.Component {
         return (
             <div className={classes.root}>
                 <Layout>
-                    <h3>ETH Price Prdiction (coundown - 00:00:00)</h3>
+                    <h3>Coinbase ETH Price Prdiction</h3>
+                    <h3>ETH price 00:00:00 is 111 USD</h3>
+                    <h3>Comapred with 111 USD, predict the ETH price on 00:00:00. Is it up, down or unchanged?</h3>
                     <Grid container spacing={24}>
                         <Grid item xs={9} sm={5}>
                             <PredictInit initState={this.state}/>
