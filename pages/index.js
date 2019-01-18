@@ -11,6 +11,7 @@ import betStorege from '../eth/betStorage';
 import Layout from '../components/Layout';
 import PredictInit from '../components/PredictInit';
 import SubmitBet from '../components/SubmitBet';
+import {getPriceDate} from '../src/utils/utils'
 
 const styles = () => ({
     root: {
@@ -21,7 +22,6 @@ const styles = () => ({
         marginRight: "auto",
         width: "50%"
     }
-
 });
 
 const trendsMap = {
@@ -39,7 +39,8 @@ class Index extends React.Component {
         poolSum: 0,
         storeAdds: [],
         submitBets: [],
-        isLoading: true
+        isLoading: true,
+        priceDate: {}
     };
 
     async componentDidMount() {
@@ -47,9 +48,12 @@ class Index extends React.Component {
         const minBet = await predict.methods.minBet().call();
         const rangeMax = await predict.methods.rangeMax().call();
         const poolSum = await predict.methods.poolSum().call();
-
         this.setState({manager, minBet, rangeMax, poolSum});
+
         await this.getSubmitBets();
+
+        this.setState({priceDate: await getPriceDate()});
+
         setTimeout(() => this.setState({isLoading: false}), 300);
     }
 
@@ -83,9 +87,9 @@ class Index extends React.Component {
         return (
             <div className={classes.root}>
                 <Layout>
-                    <h3>Coinbase ETH Price Prdiction</h3>
-                    <h3>ETH price 00:00:00 is 111 USD</h3>
-                    <h3>Comapred with 111 USD, predict the ETH price on 00:00:00. Is it up, down or unchanged?</h3>
+                    <h3>Coinbase ETH Price Prdiction, with Contract on ETH Rinkeby Network</h3>
+                    <h3>ETH price {this.state.priceDate.old.DATE} is {this.state.priceDate.old.USD} USD</h3>
+                    <h3>Comapred with {this.state.priceDate.old.USD} USD, predict the ETH price on {this.state.priceDate.new.DATE}. Is it up, down or unchanged?</h3>
                     <Grid container spacing={24}>
                         <Grid item xs={9} sm={5}>
                             <PredictInit initState={this.state}/>
