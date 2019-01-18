@@ -7,6 +7,7 @@ import (
 	"time"
 
 	resvbt "./resvbt"
+	utils "./utils"
 )
 
 const timeOut time.Duration = 10 // In Sec
@@ -21,8 +22,15 @@ func main() {
 	go http.ListenAndServe(":"+*port, nil)
 
 	for true {
+		oldPrice := utils.GetCryptPrice()
+		log.Println("oldPrice: ", oldPrice)
+
 		timer1 := time.NewTimer(timeOut * time.Second)
 		<-timer1.C
-		resvbt.ResolveBet()
+
+		newPrice := utils.GetCryptPrice()
+		log.Println("newPrice: ", newPrice)
+
+		resvbt.ResolveBet(utils.ConvertToPredict(oldPrice, newPrice))
 	}
 }

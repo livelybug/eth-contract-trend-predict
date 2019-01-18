@@ -1,4 +1,4 @@
-package resvbt
+package main
 
 import (
 	"context"
@@ -23,7 +23,8 @@ const gasPrice int = 3000000
 const gasLimit int = 3900000
 
 // ResolveBet ... Finalize current bet
-func ResolveBet(trend uint) {
+func main() {
+	const trend uint = 0
 
 	client, err := ethclient.Dial("https://rinkeby.infura.io")
 	utils.LogErr(err)
@@ -47,12 +48,12 @@ func ResolveBet(trend uint) {
 
 	// Finish verifying the deployed contract
 
-	poolSum, err := predictInstance.PoolSum(nil)
-	utils.LogErr(err)
-	if poolSum.Uint64() == 0 {
-		log.Println("No bet yet!")
-		return
-	}
+	// poolSum, err := predictInstance.PoolSum(nil)
+	// utils.LogErr(err)
+	// if poolSum.Uint64() == 0 {
+	// 	log.Println("No bet yet!")
+	// 	return
+	// }
 
 	privateKey, err := crypto.HexToECDSA(rinkebyPK)
 	utils.LogErr(err)
