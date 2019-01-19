@@ -4,7 +4,7 @@
 	"package": [],
 	"rootPath": "github.com/livelybug/eth-contract-trend-predict",
 	"heroku": {
-		"install" : [ "." ],
+		"install" : [ ".", "./..." ],
 		"goVersion": "go1.11",
 		"sync": true
 	}

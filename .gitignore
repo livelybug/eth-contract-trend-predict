@@ -1,6 +1,6 @@
 .idea/
 out/
-vendor.bak/
+vendor_bak/
 
 # Logs
 logs
