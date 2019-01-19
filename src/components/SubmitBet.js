@@ -7,10 +7,10 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-import predict from '../eth/predict';
-import web3 from '../eth/web3';
+import predict from '../../eth/predict';
+import web3 from '../../eth/web3';
 import PoolProportion from './PoolProportion';
-import { globalConfig } from '../src/utils/utils';
+import { globalConfig } from '../utils/utils';
 
 const blockGasLimit = 2900000;
 

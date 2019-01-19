@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import web3 from '../eth/web3';
-import {precise} from '../src/utils/utils';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
+import web3 from '../../eth/web3';
+import {precise} from '../utils/utils';
 
 const styles = theme => ({
     button: {

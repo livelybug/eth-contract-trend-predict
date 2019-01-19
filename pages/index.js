@@ -8,9 +8,9 @@ import ReactLoading from 'react-loading';
 
 import predict from '../eth/predict';
 import betStorege from '../eth/betStorage';
-import Layout from '../components/Layout';
-import PredictInit from '../components/PredictInit';
-import SubmitBet from '../components/SubmitBet';
+import Layout from '../src/components/Layout';
+import PredictInit from '../src/components/PredictInit';
+import SubmitBet from '../src/components/SubmitBet';
 import {getPriceDate} from '../src/utils/utils'
 
 const styles = () => ({
@@ -88,7 +88,7 @@ class Index extends React.Component {
             <div className={classes.root}>
                 <Layout>
                     <h3>Coinbase ETH Price Prdiction, with Contract on ETH Rinkeby Network</h3>
-                    <h3>ETH price {this.state.priceDate.old.DATE} is {this.state.priceDate.old.USD} USD</h3>
+                    <h3>ETH price on {this.state.priceDate.old.DATE} is {this.state.priceDate.old.USD} USD</h3>
                     <h3>Comapred with {this.state.priceDate.old.USD} USD, predict the ETH price on {this.state.priceDate.new.DATE}. Is it up, down or unchanged?</h3>
                     <Grid container spacing={24}>
                         <Grid item xs={9} sm={5}>
