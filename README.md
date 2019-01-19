@@ -1,4 +1,4 @@
 # eth-price-trend-predict
 
 ## Heroku
-https://safe-atoll-10254.herokuapp.com/
+https://eth-rinkeby-dapp-10254.herokuapp.com/
