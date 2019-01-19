@@ -24,6 +24,11 @@
 #   go-tests = true
 #   unused-packages = true
 
+[metadata.heroku]
+  root-package = "github.com/livelybug/eth-contract-trend-predict"
+  go-version = "1.11"
+  install = [ "." ]
+  ensure = false
 
 [[constraint]]
   name = "github.com/ethereum/go-ethereum"
