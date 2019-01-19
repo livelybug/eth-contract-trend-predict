@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"time"
 
-	resvbt "./resvbt"
-	utils "./utils"
+	resvbt "github.com/livelybug/eth-contract-trend-predict/golang/resvbt"
+	utils "github.com/livelybug/eth-contract-trend-predict/golang/utils"
 )
 
 // Mysev ...

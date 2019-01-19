@@ -1,6 +1,6 @@
 package main
 
-import mysev "./golang"
+import mysev "github.com/livelybug/eth-contract-trend-predict/golang"
 
 func main() {
 	mysev.Mysev()

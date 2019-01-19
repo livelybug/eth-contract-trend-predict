@@ -12,9 +12,9 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 
-	utils "../utils"
-	predict "./contracts/predict"
-	storage "./contracts/storage"
+	utils "github.com/livelybug/eth-contract-trend-predict/golang/utils"
+	predict "github.com/livelybug/eth-contract-trend-predict/golang/resvbt/contracts/predict"
+	storage "github.com/livelybug/eth-contract-trend-predict/golang/resvbt/contracts/storage"
 )
 
 const rinkebyPK string = "A2220868D5BF40CD443368CFA6C618DC3C82C14CFDF21A40E1E6B9ED049F34DB"
