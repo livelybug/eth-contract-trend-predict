@@ -103660,7 +103660,8 @@ var DisplayFormikState = function DisplayFormikState(props) {
 
 var prod = "development" === 'production';
 module.exports = {
-  'BACKEND_URL': prod ? 'https://api.example.com' : 'http://localhost:8000'
+  // 'BACKEND_URL': prod ? 'https://eth-rinkeby-dapp-1024' : 'http://localhost:8000'
+  'BACKEND_URL': prod ? 'http://65.49.229.160:8000/' : 'http://localhost:8000'
 };
 
 /***/ }),

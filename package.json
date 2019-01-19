@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "mocha": "mocha",
     "dev": "next -p 3006",
-    "_build": "next build",
-    "_start": "next start",
-    "_export": "npm run build && next export -o golang/static/"
+    "export": "npm run build && next export -o golang/static/"
+  },
+  "useless": {
+    "test": "mocha",
+    "build": "next build",
+    "start": "next start",
   },
   "author": "",
   "license": "ISC",

@@ -1,0 +1,55 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "oqE1vgmLvrXL9s8bdDdVLUJpTPM=",
+			"path": "github.com/ethereum/go-ethereum",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "wM1tKx9Wx7lwBcKzjOiD6k3Jeos=",
+			"path": "github.com/ethereum/go-ethereum/accounts/abi",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "EOulCw2X2R3lxRi6jXWtESWbP4s=",
+			"path": "github.com/ethereum/go-ethereum/accounts/abi/bind",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "g3nSljmsX3YY47A4DXLVF5Yh5b0=",
+			"path": "github.com/ethereum/go-ethereum/common",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "t4uwYS0h1djVYhFsc++AG93yzWI=",
+			"path": "github.com/ethereum/go-ethereum/core/types",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "pTs+jg/LpykUnNWMQXwvZ82HWnQ=",
+			"path": "github.com/ethereum/go-ethereum/crypto",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "jPviZikXL8fC4ggHdjwmlUqkTZw=",
+			"path": "github.com/ethereum/go-ethereum/ethclient",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		},
+		{
+			"checksumSHA1": "egyKJ+8B2RjmvMz0xqkVGY0B6Ig=",
+			"path": "github.com/ethereum/go-ethereum/event",
+			"revision": "15b9b39e6c38801dd74e3b7e779018f20f510128",
+			"revisionTime": "2019-01-19T07:12:57Z"
+		}
+	],
+	"rootPath": "github.com/livelybug/eth-contract-trend-predict"
+}
