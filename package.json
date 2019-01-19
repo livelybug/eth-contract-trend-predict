@@ -6,12 +6,12 @@
   "scripts": {
     "mocha": "mocha",
     "dev": "next -p 3006",
-    "export": "npm run build && next export -o golang/static/"
+    "export": "next build && next export -o golang/static/"
   },
   "useless": {
     "test": "mocha",
     "build": "next build",
-    "start": "next start",
+    "start": "next start"
   },
   "author": "",
   "license": "ISC",
