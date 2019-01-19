@@ -1,18 +1,23 @@
-package main
+package mysev
 
 import (
 	"flag"
 	"log"
 	"net/http"
+	"path/filepath"
 	"time"
 
 	resvbt "./resvbt"
 	utils "./utils"
 )
 
-func main() {
+// Mysev ...
+func Mysev() {
+	dirStatic, err := filepath.Abs("golang/static")
+	utils.LogErr(err)
+
 	port := flag.String("p", "8000", "port")
-	dir := flag.String("d", "./static", "dir")
+	dir := flag.String("d", dirStatic, "dir")
 	flag.Parse()
 
 	http.HandleFunc("/price-date", utils.HTTPHandler)
