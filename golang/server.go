@@ -2,8 +2,10 @@ package mysev
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"time"
 
@@ -16,7 +18,7 @@ func Mysev() {
 	dirStatic, err := filepath.Abs("golang/static")
 	utils.LogErr(err)
 
-	port := flag.String("p", "8000", "port")
+	port := flag.String("p", getPort(), "port")
 	dir := flag.String("d", dirStatic, "dir")
 	flag.Parse()
 
@@ -31,6 +33,17 @@ func Mysev() {
 		timer1 := time.NewTimer(5 * time.Second)
 		<-timer1.C
 	}
+}
+
+// get the Port from the environment so we can run on Heroku
+func getPort() string {
+	var port = os.Getenv("PORT")
+	// Set a default port if there is nothing in the environment
+	if port == "" {
+		port = "8000"
+		fmt.Println("INFO: No PORT environment variable detected, defaulting to " + port)
+	}
+	return port
 }
 
 func mainTimer() {
