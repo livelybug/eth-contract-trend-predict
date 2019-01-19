@@ -1,0 +1,44 @@
+{
+  "name": "eth-contract-trend-predict",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mocha": "mocha",
+    "dev": "next -p 3006",
+    "export": "npm run build && next export -o golang/static/"
+  },
+  "useless": {
+    "test": "mocha",
+    "build": "next build",
+    "start": "next start",
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/styles": "^3.0.0-alpha.7",
+    "@zeit/next-css": "^1.0.1",
+    "axios": "^0.18.0",
+    "formik": "^1.4.2",
+    "fs-extra": "^7.0.1",
+    "ganache-cli": "^6.2.5",
+    "jss": "latest",
+    "mocha": "^5.2.0",
+    "next": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-circular-progressbar": "^1.0.0",
+    "react-dom": "latest",
+    "react-jss": "^8.1.0",
+    "react-loading": "^2.0.3",
+    "react-scripts-ts": "^3.1.0",
+    "solc": "^0.4.25",
+    "truffle-hdwallet-provider": "^1.0.1",
+    "web3": "^1.0.0-beta.35",
+    "yup": "^0.26.7"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  }
+}
