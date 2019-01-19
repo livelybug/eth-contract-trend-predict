@@ -6,9 +6,9 @@
   "scripts": {
     "test": "mocha",
     "dev": "next -p 3006",
-    "build": "next build",
-    "start": "next start",
-    "export": "npm run build && next export -o golang/static/"
+    "_build": "next build",
+    "_start": "next start",
+    "_export": "npm run build && next export -o golang/static/"
   },
   "author": "",
   "license": "ISC",
